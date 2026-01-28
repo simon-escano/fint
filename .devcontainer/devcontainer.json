@@ -1,0 +1,50 @@
+{
+    "name": "Zint - Tauri Dev Environment",
+    "image": "mcr.microsoft.com/devcontainers/rust:1-bookworm",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20"
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "tauri-apps.tauri-vscode",
+                "bradlc.vscode-tailwindcss",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh"
+            }
+        }
+    },
+    "forwardPorts": [
+        1420
+    ],
+    "remoteUser": "vscode",
+    "mounts": [
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+        "source=${localEnv:HOME}/.Xauthority,target=/home/vscode/.Xauthority,type=bind"
+    ],
+    "runArgs": [
+        "--net=host",
+        "--device",
+        "/dev/dri:/dev/dri",
+        "--env",
+        "DISPLAY=${localEnv:DISPLAY}",
+        "--env",
+        "WAYLAND_DISPLAY=${localEnv:WAYLAND_DISPLAY}",
+        "--env",
+        "XDG_RUNTIME_DIR=${localEnv:XDG_RUNTIME_DIR}",
+        "--mount",
+        "type=bind,source=${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY},target=${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}"
+    ]
+}

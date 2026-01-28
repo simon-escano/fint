@@ -1,0 +1,9 @@
+node_modules
+target
+src-tauri/target
+dist
+.DS_Store
+.env
+.vscode
+!/.vscode/extensions.json
+!/.vscode/settings.json
