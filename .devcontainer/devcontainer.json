@@ -1,5 +1,5 @@
 {
-    "name": "Fint - Tauri Dev Environment",
+    "name": "Zint - Tauri Dev Environment",
     "image": "mcr.microsoft.com/devcontainers/rust:1-bookworm",
     "features": {
         "ghcr.io/devcontainers/features/node:1": {
@@ -31,20 +31,11 @@
     ],
     "remoteUser": "vscode",
     "mounts": [
-        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
-        "source=${localEnv:HOME}/.Xauthority,target=/home/vscode/.Xauthority,type=bind"
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"
     ],
     "runArgs": [
-        "--net=host",
-        "--device",
-        "/dev/dri:/dev/dri",
-        "--env",
-        "DISPLAY=${localEnv:DISPLAY}",
-        "--env",
-        "WAYLAND_DISPLAY=${localEnv:WAYLAND_DISPLAY}",
-        "--env",
-        "XDG_RUNTIME_DIR=${localEnv:XDG_RUNTIME_DIR}",
-        "--mount",
-        "type=bind,source=${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY},target=${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY}"
+        "--network=host",
+        "-e",
+        "DISPLAY=${localEnv:DISPLAY}"
     ]
 }
