@@ -8,7 +8,7 @@ url="https://github.com/simon-escano/fint"
 license=('MIT')
 provides=('fint')
 conflicts=('fint')
-depends=('webkit2gtk' 'libappindicator-gtk3')
+depends=('webkit2gtk-4.1' 'libappindicator-gtk3')
 source_x86_64=("${pkgname}-${pkgver}.deb::https://github.com/simon-escano/fint/releases/download/v${pkgver}/fint_${pkgver}_amd64.deb")
 sha256sums_x86_64=('SKIP') # Use 'updpkgsums' to generate automatically
 
