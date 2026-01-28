@@ -13,5 +13,5 @@ source_x86_64=("${pkgname}-${pkgver}.deb::https://github.com/simon-escano/fint/r
 sha256sums_x86_64=('SKIP') # Use 'updpkgsums' to generate automatically
 
 package() {
-	tar -xf data.tar.xz -C "${pkgdir}"
+	tar -xf data.tar.gz -C "${pkgdir}"
 }
