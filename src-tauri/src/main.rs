@@ -539,6 +539,11 @@ fn print_path_and_exit(app: AppHandle, path: String) {
 
 fn main() {
     // Parse CLI arguments for picker mode
+    
+    // Fix for "Gdk-Message: Error 71 (Protocol error)" on Wayland
+    // This disables the DMABUF renderer which is often unstable with WebKitGTK on Wayland
+    env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+
     let args: Vec<String> = env::args().collect();
     let pick_file = args.contains(&"--pick-file".to_string());
     let pick_dir = args.contains(&"--pick-dir".to_string());
