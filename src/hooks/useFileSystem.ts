@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { FileEntry, PickerMode, ViewMode, ClipboardState, Tab, ZintConfig } from '../types';
+import { FileEntry, PickerMode, ViewMode, ClipboardState, Tab, FintConfig } from '../types';
 import { readDirectory, getParentDirectory, getHomeDirectory, copyFiles, moveFiles, deleteFiles, openFile, printPathAndExit, getConfig, getUserCss } from '../api/tauri';
 
 interface UseFileSystemState {
@@ -18,7 +18,7 @@ interface UseFileSystemState {
     error: string | null;
     loading: boolean;
     showHidden: boolean;
-    config: ZintConfig | null;
+    config: FintConfig | null;
 }
 
 export function useFileSystem() {

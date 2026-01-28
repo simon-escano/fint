@@ -1,12 +1,12 @@
 import { invoke } from '@tauri-apps/api/core';
-import { DirectoryContents, PreviewContent, ZintConfig } from '../types';
+import { DirectoryContents, PreviewContent, FintConfig } from '../types';
 
 // ============================================================================
 // Configuration
 // ============================================================================
 
-export async function getConfig(): Promise<ZintConfig> {
-    return invoke<ZintConfig>('get_config');
+export async function getConfig(): Promise<FintConfig> {
+    return invoke<FintConfig>('get_config');
 }
 
 export async function getUserCss(): Promise<string | null> {

@@ -43,7 +43,7 @@ pub struct EditorConfig {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
-pub struct ZintConfig {
+pub struct FintConfig {
     #[serde(default)]
     pub window: WindowConfig,
     #[serde(default)]
@@ -58,7 +58,7 @@ fn default_800() -> u32 { 800 }
 fn default_editor() -> String { "code".to_string() }
 
 fn get_config_dir() -> Option<PathBuf> {
-    dirs::config_dir().map(|p| p.join("zint"))
+    dirs::config_dir().map(|p| p.join("fint"))
 }
 
 fn ensure_config_dir() -> Option<PathBuf> {
@@ -69,17 +69,17 @@ fn ensure_config_dir() -> Option<PathBuf> {
     Some(config_dir)
 }
 
-fn load_config_internal() -> ZintConfig {
+fn load_config_internal() -> FintConfig {
     let config_path = match get_config_dir() {
         Some(dir) => dir.join("config.toml"),
-        None => return ZintConfig::default(),
+        None => return FintConfig::default(),
     };
 
     if !config_path.exists() {
         // Create default config file
         if let Some(dir) = ensure_config_dir() {
-            let default_config = r#"# Zint Configuration
-# See https://github.com/youruser/zint for documentation
+            let default_config = r#"# Fint Configuration
+# See https://github.com/youruser/fint for documentation
 
 [window]
 decorations = true    # Show window title bar
@@ -96,12 +96,12 @@ command = "code"      # Command to open folders
 "#;
             let _ = fs::write(dir.join("config.toml"), default_config);
         }
-        return ZintConfig::default();
+        return FintConfig::default();
     }
 
     match fs::read_to_string(&config_path) {
         Ok(content) => toml::from_str(&content).unwrap_or_default(),
-        Err(_) => ZintConfig::default(),
+        Err(_) => FintConfig::default(),
     }
 }
 
@@ -157,7 +157,7 @@ fn get_extension(path: &Path) -> Option<String> {
 // ============================================================================
 
 #[tauri::command]
-fn get_config() -> ZintConfig {
+fn get_config() -> FintConfig {
     load_config_internal()
 }
 
@@ -169,7 +169,7 @@ fn get_user_css() -> Option<String> {
     } else {
         // Create example CSS file
         if let Some(dir) = ensure_config_dir() {
-            let example_css = r#"/* Zint Custom Styles
+            let example_css = r#"/* Fint Custom Styles
  * This file is loaded on startup.
  * See documentation for available CSS classes.
  *
@@ -544,9 +544,9 @@ fn main() {
     let pick_dir = args.contains(&"--pick-dir".to_string());
     
     if pick_file {
-        env::set_var("ZINT_PICKER_MODE", "file");
+        env::set_var("FINT_PICKER_MODE", "file");
     } else if pick_dir {
-        env::set_var("ZINT_PICKER_MODE", "dir");
+        env::set_var("FINT_PICKER_MODE", "dir");
     }
 
     // Load config to apply window settings

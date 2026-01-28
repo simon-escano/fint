@@ -1,5 +1,5 @@
 [package]
-name = "zint"
+name = "fint"
 version = "0.1.0"
 description = "A keyboard-driven GUI file manager for Linux"
 authors = [""]

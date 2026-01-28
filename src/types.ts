@@ -39,7 +39,7 @@ export interface EditorConfig {
     command: string;
 }
 
-export interface ZintConfig {
+export interface FintConfig {
     window: WindowConfig;
     behavior: BehaviorConfig;
     editor: EditorConfig;
@@ -77,7 +77,7 @@ export interface AppState {
     error: string | null;
     loading: boolean;
     showHidden: boolean;
-    config: ZintConfig | null;
+    config: FintConfig | null;
 }
 
 // Utility functions

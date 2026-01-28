@@ -1,7 +1,7 @@
-# Project Zint: Requirements & Architecture
+# Project Fint: Requirements & Architecture
 
 ## 1. Project Vision
-**Zint** is a high-performance, keyboard-driven GUI file manager for Linux (specifically Arch/Hyprland).
+**Fint** is a high-performance, keyboard-driven GUI file manager for Linux (specifically Arch/Hyprland).
 * **The Core Concept:** "Yazi, but with CSS." It combines the speed, efficiency, and muscle memory of a TUI (Yazi) with the rich styling, smooth animations, and media capabilities of a GUI.
 * **The Goal:** To serve as both a daily driver file manager AND a system-wide file picker dialog that returns paths to standard output.
 
@@ -32,7 +32,7 @@ The application must use a strict 3-Panel Grid Layout:
     * **If Folder:** Show a list summary of that folder's contents.
 
 ## 4. Input & Navigation (Vim Logic)
-The app must implement a global keyboard handler that intercepts keys before they reach the DOM. Zint strictly mimics [Yazi's default keymap](https://yazi-rs.github.io/docs/quick-start/#keybindings).
+The app must implement a global keyboard handler that intercepts keys before they reach the DOM. Fint strictly mimics [Yazi's default keymap](https://yazi-rs.github.io/docs/quick-start/#keybindings).
 
 ### Navigation
 * `k` / `ArrowUp`: Move cursor up.
@@ -64,13 +64,13 @@ The app must implement a global keyboard handler that intercepts keys before the
 The behavior of the `Enter` key depends strictly on how the application was launched.
 
 ### Mode A: Standalone (Default)
-* **Command:** `zint`
+* **Command:** `fint`
 * **Behavior:**
     * **On File:** Open the file using the system default application (e.g., `xdg-open`).
     * **On Folder:** Open the folder in the User's Default Code Editor (e.g., VS Code). *Note: To navigate INTO a folder, the user presses `l`, not Enter.*
 
 ### Mode B: Picker (CLI Integration)
-* **Command:** `zint --pick-file` OR `zint --pick-dir`
+* **Command:** `fint --pick-file` OR `fint --pick-dir`
 * **Behavior:**
     * **On File (in `--pick-file` mode):** Print absolute path to `STDOUT` and terminate process immediately.
     * **On Folder (in `--pick-dir` mode):** Print absolute path to `STDOUT` and terminate process immediately.

@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: 'Zint ${{ github.ref_name }}'
+          releaseName: 'Fint ${{ github.ref_name }}'
           body: 'See the assets to download this version and install.'
           draft: false
           prerelease: false

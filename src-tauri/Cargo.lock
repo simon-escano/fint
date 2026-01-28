@@ -5034,7 +5034,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "zint"
+name = "fint"
 version = "0.1.0"
 dependencies = [
  "chrono",

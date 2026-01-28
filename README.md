@@ -1,8 +1,8 @@
-# Zint
+# Fint
 
 A high-performance, keyboard-driven GUI file manager for Linux, combining TUI efficiency with GUI media capabilities.
 
-![Zint File Manager](./docs/screenshot.png)
+![Fint File Manager](./docs/screenshot.png)
 
 ## Features
 
@@ -24,31 +24,31 @@ A high-performance, keyboard-driven GUI file manager for Linux, combining TUI ef
 # - System deps: libwebkit2gtk-4.1-dev libayatana-appindicator3-dev
 
 # Clone and build
-git clone https://github.com/youruser/zint.git
-cd zint
+git clone https://github.com/youruser/fint.git
+cd fint
 npm install
 npm run tauri build
 
-# Binary at: src-tauri/target/release/zint
+# Binary at: src-tauri/target/release/fint
 ```
 
 ### Arch Linux (AUR)
 
 ```bash
-yay -S zint-bin  # or paru -S zint-bin
+yay -S fint-bin  # or paru -S fint-bin
 ```
 
 ## Usage
 
 ```bash
 # Run as file manager
-zint
+fint
 
 # File picker mode (prints path to stdout)
-zint --pick-file
+fint --pick-file
 
 # Directory picker mode
-zint --pick-dir
+fint --pick-dir
 ```
 
 ## Keybindings
@@ -101,7 +101,7 @@ zint --pick-dir
 
 ## Configuration
 
-Config file: `~/.config/zint/config.toml`
+Config file: `~/.config/fint/config.toml`
 
 ```toml
 # Window settings
@@ -129,7 +129,7 @@ command = "code"      # Command to open folders with 'o'
 
 ## Custom CSS Theming
 
-CSS file: `~/.config/zint/style.css`
+CSS file: `~/.config/fint/style.css`
 
 ### Available CSS Classes
 
@@ -186,10 +186,10 @@ CSS file: `~/.config/zint/style.css`
 
 ### Transparent Background
 
-Zint supports transparent backgrounds for compositors like Hyprland/Sway:
+Fint supports transparent backgrounds for compositors like Hyprland/Sway:
 
 ```css
-/* ~/.config/zint/style.css */
+/* ~/.config/fint/style.css */
 :root {
   --bg-primary: rgba(30, 30, 46, 0.85);   /* 85% opacity */
   --bg-secondary: rgba(24, 24, 37, 0.9);
@@ -204,7 +204,7 @@ html, body, #root {
 
 ### Live Reload
 
-Changes to `style.css` are applied **instantly** without restarting Zint. Just save the file and see your changes live!
+Changes to `style.css` are applied **instantly** without restarting Fint. Just save the file and see your changes live!
 
 ## Using as Default File Picker
 
@@ -215,10 +215,10 @@ Set environment variable:
 export GTK_USE_PORTAL=1
 ```
 
-Create `~/.local/share/xdg-desktop-portal/portals/zint.portal`:
+Create `~/.local/share/xdg-desktop-portal/portals/fint.portal`:
 ```ini
 [portal]
-DBusName=org.freedesktop.impl.portal.desktop.zint
+DBusName=org.freedesktop.impl.portal.desktop.fint
 Interfaces=org.freedesktop.impl.portal.FileChooser
 ```
 
@@ -227,10 +227,10 @@ Interfaces=org.freedesktop.impl.portal.FileChooser
 Add to `~/.config/hypr/hyprland.conf`:
 ```ini
 # File picker keybind
-bind = SUPER SHIFT, F, exec, zint --pick-file | xargs -I{} notify-send "Selected: {}"
+bind = SUPER SHIFT, F, exec, fint --pick-file | xargs -I{} notify-send "Selected: {}"
 
 # Use with wl-paste
-bind = SUPER SHIFT, O, exec, zint --pick-file | wl-copy
+bind = SUPER SHIFT, O, exec, fint --pick-file | wl-copy
 ```
 
 ### Script Wrapper
@@ -238,7 +238,7 @@ bind = SUPER SHIFT, O, exec, zint --pick-file | wl-copy
 ```bash
 #!/bin/bash
 # ~/bin/file-picker
-selected=$(zint --pick-file 2>/dev/null)
+selected=$(fint --pick-file 2>/dev/null)
 if [ -n "$selected" ]; then
     echo "$selected"
 fi
