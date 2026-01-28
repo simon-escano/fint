@@ -244,26 +244,63 @@ if [ -n "$selected" ]; then
 fi
 ```
 
-## Development
+## Development Workflow
+
+### For You (The Developer)
+
+Since you are developing Fint, use the local development build for your daily driver to test changes immediately:
 
 ```bash
-# Dev mode with hot reload
+# 1. Run dev server (hot reload)
 npm run tauri dev
 
-# Type check frontend
-npm run build
-
-# Build release binary
+# 2. Build release binary for personal use
 npm run tauri build
+# Binary location: src-tauri/target/release/fint
 ```
 
-## Tech Stack
+To update your system-wide installation effectively during dev:
+```bash
+# Link the dev binary (optional)
+sudo ln -sf $(pwd)/src-tauri/target/release/fint /usr/local/bin/fint
+```
 
-- **Frontend**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS + CSS Variables
-- **Virtualization**: @tanstack/react-virtual
-- **Backend**: Tauri v2 (Rust)
-- **Icons**: Lucide React
+### Releasing Updates
+
+1. **Tag a version**:
+   ```bash
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+2. **Wait for CI**: GitHub Actions will build `fint_0.1.0_amd64.deb` and AppImage.
+3. **AUR Update**: Update the `PKGBUILD` version and checksums, then push to AUR.
+
+## AUR Packaging (fint-bin)
+
+To make `yay -S fint-bin` work, you must submit the package to the AUR:
+
+1. Create an AUR account at [aur.archlinux.org](https://aur.archlinux.org).
+2. Create the package repo:
+   ```bash
+   git clone ssh://aur@aur.archlinux.org/fint-bin.git
+   cd fint-bin
+   ```
+3. Copy the `PKGBUILD` from this repo to the AUR repo.
+4. Update checksums:
+   ```bash
+   updpkgsums
+   makepkg --printsrcinfo > .SRCINFO
+   ```
+5. Test build:
+   ```bash
+   makepkg -si
+   ```
+6. Push to AUR:
+   ```bash
+   git add PKGBUILD .SRCINFO
+   git commit -m "Initial release v0.1.0"
+   git push
+   ```
 
 ## License
 
